@@ -38,21 +38,11 @@ cd ~/easy-rsa
 ./easyrsa sign-req server server
 ./easyrsa gen-dh
 openvpn --genkey --secret ta.key
-## 3. Initialisation de la PKI
-bash
-make-cadir ~/easy-rsa
-cd ~/easy-rsa
-./easyrsa init-pki
-./easyrsa build-ca
-./easyrsa gen-req server nopass
-./easyrsa sign-req server server
-./easyrsa gen-dh
-openvpn --genkey --secret ta.key
 
-## 4. Configuration du serveur
+## 3. Configuration du serveur
 Le fichier de configuration server.conf se trouve dans le répertoire config/server/. Il doit être copié dans /etc/openvpn/.
 
-## 5. Création des clients
+## 4. Création des clients
 bash
 ./easyrsa gen-req client1 nopass
 ./easyrsa sign-req client client1
@@ -65,11 +55,3 @@ Clé statique ta.key pour éviter les attaques DoS.
 
 Certificats valides générés localement.
 
-📦 Structure du projet
-vpn-project/
-├── server.conf
-├── easy-rsa/
-│   └── pki/
-├── client-configs/
-│   └── files/
-└── README.md
