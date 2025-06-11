@@ -2,7 +2,7 @@
 Déploiement d’un serveur VPN sécurisé avec OpenVPN sur Debian 12, incluant la génération de certificats et la configuration client.
 ## Serveur VPN avec OpenVPN sur Debian 12
 📋 Description
-Ce projet présente la mise en place d’un serveur VPN sécurisé sous Debian 12 à l’aide d’OpenVPN. Il comprend :
+## Ce projet présente la mise en place d’un serveur VPN sécurisé sous Debian 12 à l’aide d’OpenVPN. Il comprend :
 
 La configuration du serveur VPN.
 
@@ -28,7 +28,8 @@ Net-tools / IP utils
 bash
 sudo apt update
 sudo apt install openvpn easy-rsa net-tools -y
-2. Initialisation de la PKI
+
+3. Initialisation de la PKI
 bash
 make-cadir ~/easy-rsa
 cd ~/easy-rsa
@@ -38,10 +39,11 @@ cd ~/easy-rsa
 ./easyrsa sign-req server server
 ./easyrsa gen-dh
 openvpn --genkey --secret ta.key
-3. Configuration du serveur
+
+4. Configuration du serveur
 Le fichier de configuration server.conf se trouve dans le répertoire config/server/. Il doit être copié dans /etc/openvpn/.
 
-4. Création des clients
+5. Création des clients
 bash
 ./easyrsa gen-req client1 nopass
 ./easyrsa sign-req client client1
@@ -62,4 +64,3 @@ vpn-project/
 ├── client-configs/
 │   └── files/
 └── README.md
-
